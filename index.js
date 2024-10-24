@@ -1,12 +1,12 @@
 require("dotenv").config();
 const express = require('express')
 
-
+const cors = require("cors");
 
 const { initializeDatabase} = require("./db/db.connect")
 const Movie = require("./models/movie.models");
 
-
+app.use(cors()); 
 app.use(express.json())
 
 initializeDatabase();
@@ -188,12 +188,3 @@ const PORT = process.env.PORT || 3000
 app.listen(PORT, ()=> {
     console.log(`Server is running on ${PORT}`)
 })
-
-
-const cors = require("cors");
-const corsOptions = {
-  origin: "*",
-  credentials: true,
-  optionSuccessStatus: 200,
-};
-app.use(cors(corsOptions)); 
